@@ -22,6 +22,13 @@ public class PlanetMovement : MonoBehaviour
     bool isGrounded;
     bool jumpRequested;
 
+    [Header("Unstable Effect")]
+    [SerializeField] ParticleSystem unstableEffectParticles;
+
+    float temporarySpeedBonus;
+    float unstableEffectTimer;
+    bool reverseHorizontalControls;
+
     public float CurrentSpeed => currentSpeed;
 
     void Awake()
@@ -32,9 +39,22 @@ public class PlanetMovement : MonoBehaviour
 
     void Update()
     {
+        // Gestion de la durée de l'effet instable
+        if (unstableEffectTimer > 0f)
+        {
+            unstableEffectTimer -= Time.deltaTime;
+
+            if (unstableEffectTimer <= 0f)
+            {
+                EndUnstableEffect();
+            }
+        }
+
         if (Keyboard.current == null) return;
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame)
+        // Gestion du saut
+        if (Keyboard.current.spaceKey.wasPressedThisFrame ||
+            Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
             jumpRequested = true;
         }
@@ -44,11 +64,15 @@ public class PlanetMovement : MonoBehaviour
     {
         if (planetMass != null && planetMass.IsDead) return;
 
+        // Limite de vitesse temporairement augmentée
+        float currentMaxSpeed = maxSpeed + temporarySpeedBonus;
+
         currentSpeed = Mathf.Min(
             currentSpeed + acceleration * Time.fixedDeltaTime,
-            maxSpeed
+            currentMaxSpeed
         );
 
+        // Récupération des inputs latéraux
         float horizontalInput = 0f;
 
         if (Keyboard.current != null)
@@ -60,12 +84,20 @@ public class PlanetMovement : MonoBehaviour
             else if (rightPressed && !leftPressed) horizontalInput = 1f;
         }
 
+        // Inversion temporaire des commandes
+        if (reverseHorizontalControls)
+        {
+            horizontalInput *= -1f;
+        }
+
+        // Déplacement du joueur
         rb.linearVelocity = new Vector3(
             horizontalInput * lateralSpeed,
             rb.linearVelocity.y,
             currentSpeed
         );
 
+        // Gestion du saut
         if (jumpRequested)
         {
             if (isGrounded)
@@ -97,6 +129,47 @@ public class PlanetMovement : MonoBehaviour
 
     public void SlowDown(float amount)
     {
-        currentSpeed = Mathf.Max(currentSpeed - amount, minimumSpeed);
+        currentSpeed = Mathf.Max(
+            currentSpeed - amount,
+            minimumSpeed
+        );
+    }
+
+    // Activation de l'effet du cristal
+    public void ActivateUnstableEffect(float speedBonus, float duration)
+    {
+        float bonusDifference = speedBonus - temporarySpeedBonus;
+
+        currentSpeed += bonusDifference;
+        temporarySpeedBonus = speedBonus;
+
+        unstableEffectTimer = duration;
+        reverseHorizontalControls = true;
+
+        // Activation des particules
+        if (unstableEffectParticles != null &&
+            !unstableEffectParticles.isPlaying)
+        {
+            unstableEffectParticles.Play();
+        }
+    }
+
+    // Fin de l'effet du cristal
+    void EndUnstableEffect()
+    {
+        currentSpeed = Mathf.Max(
+            currentSpeed - temporarySpeedBonus,
+            minimumSpeed
+        );
+
+        temporarySpeedBonus = 0f;
+        reverseHorizontalControls = false;
+        unstableEffectTimer = 0f;
+
+        // Arrêt des particules
+        if (unstableEffectParticles != null)
+        {
+            unstableEffectParticles.Stop();
+        }
     }
 }
