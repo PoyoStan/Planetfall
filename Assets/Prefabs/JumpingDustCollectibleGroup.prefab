@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ce4a78ffcfe40a324aca22ca8b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
-  heightAboveTrack: 1.5
+  heightAboveTrack: 1.75
   raycastHeight: 50
   trackLayer:
     serializedVersion: 2
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ce4a78ffcfe40a324aca22ca8b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
-  heightAboveTrack: 1.5
+  heightAboveTrack: 1.75
   raycastHeight: 50
   trackLayer:
     serializedVersion: 2
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ce4a78ffcfe40a324aca22ca8b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
-  heightAboveTrack: 1.5
+  heightAboveTrack: 2.5
   raycastHeight: 50
   trackLayer:
     serializedVersion: 2
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ce4a78ffcfe40a324aca22ca8b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
-  heightAboveTrack: 1.5
+  heightAboveTrack: 2.5
   raycastHeight: 50
   trackLayer:
     serializedVersion: 2

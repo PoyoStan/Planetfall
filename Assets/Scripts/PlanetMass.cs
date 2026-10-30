@@ -1,11 +1,14 @@
 using UnityEngine;
-
 public class PlanetMass : MonoBehaviour
 {
     [SerializeField] float startingMass = 10f;
     [SerializeField] float massPerDust = 1f;
     [SerializeField] float massLossPerHit = 5f;
     [SerializeField] float minimumSizeRatio = 0.5f;
+    [SerializeField] GameEndManager gameEndManager;
+
+    [Header("Death")]
+    [SerializeField] GameObject explosionPrefab;
 
     float currentMass;
     Vector3 startingScale;
@@ -52,15 +55,42 @@ public class PlanetMass : MonoBehaviour
 
     void UpdateSize()
     {
-        float sizeMultiplier = Mathf.Pow(Mathf.Max(currentMass, startingMass * minimumSizeRatio) / startingMass, 1f / 3f);
+        float sizeMultiplier = Mathf.Pow(
+            Mathf.Max(currentMass, startingMass * minimumSizeRatio) / startingMass,
+            1f / 3f
+        );
+
         transform.localScale = startingScale * sizeMultiplier;
     }
 
-    void Die()
+    public void Die()
     {
+        if (IsDead) return;
+
         IsDead = true;
         currentMass = 0f;
-        UpdateSize();
+
+        if (gameEndManager != null)
+        {
+            gameEndManager.ShowDeath();
+        }
+
+        if (explosionPrefab != null)
+        {
+            if (explosionPrefab != null)
+            {
+                float explosionScale = transform.localScale.x / startingScale.x;
+
+                GameObject explosion = Instantiate(
+                    explosionPrefab,
+                    transform.position,
+                    Quaternion.identity
+                );
+
+                explosion.transform.localScale =
+                    explosionPrefab.transform.localScale * explosionScale;
+            }
+        }
 
         if (rb != null)
         {
@@ -74,6 +104,20 @@ public class PlanetMass : MonoBehaviour
         if (movement != null)
         {
             movement.enabled = false;
+        }
+
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer rend in renderers)
+        {
+            rend.enabled = false;
         }
     }
 }

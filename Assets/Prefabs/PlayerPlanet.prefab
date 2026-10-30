@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 3795319660087830501}
   - component: {fileID: 7266480226313772865}
   - component: {fileID: 6444542299776512404}
+  - component: {fileID: 8556615270784037242}
   m_Layer: 0
   m_Name: PlayerPlanet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 8239840681286282557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.16, z: -7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156,10 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlanetMovement
   lateralSpeed: 5
-  startingSpeed: 5
+  startingSpeed: 4
   acceleration: 0.2
-  maxSpeed: 12
+  maxSpeed: 10
   minimumSpeed: 2
+  jumpForce: 7
   planetMass: {fileID: 6444542299776512404}
 --- !u!114 &7266480226313772865
 MonoBehaviour:
@@ -192,3 +194,18 @@ MonoBehaviour:
   massPerDust: 2
   massLossPerHit: 5
   minimumSizeRatio: 0.5
+  gameEndManager: {fileID: 0}
+  explosionPrefab: {fileID: 5495203293943921031, guid: 7f26ce962c58d024d868251dc48e4acb, type: 3}
+--- !u!114 &8556615270784037242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239840681286282557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c25df6b557c96e4981ae4ee6c1d1eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplySelectedSkin
+  planetRenderer: {fileID: 6321653022200844294}

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Collectible
+  - TrackSurface
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - TrackSurface
   - Water
   - UI
-  - 
-  - 
+  - Death
+  - SkinPreview
   - 
   - 
   - 

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class FinalPlanetImpact : MonoBehaviour
@@ -7,10 +8,22 @@ public class FinalPlanetImpact : MonoBehaviour
     [SerializeField] float scoreWeight = 0.1f;
     [SerializeField] float forceMultiplier = 10f;
 
+    [Header("Victory")]
+    [SerializeField] GameEndManager gameEndManager;
+
     bool impactResolved;
 
     void OnTriggerEnter(Collider other)
     {
+        Rigidbody playerRb = other.GetComponent<Rigidbody>();
+
+        if (playerRb != null)
+        {
+            playerRb.useGravity = false;
+            playerRb.linearVelocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
+        }
+
         if (impactResolved) return;
 
         PlanetMass planetMass = other.GetComponent<PlanetMass>();
@@ -60,5 +73,14 @@ public class FinalPlanetImpact : MonoBehaviour
         Debug.Log("Puissance d'impact : " + impactPower);
         Debug.Log("Force appliquée : " + impactForce.magnitude);
         Debug.Log("Résultat : " + result);
+
+        if (gameEndManager != null)
+        {
+            gameEndManager.ShowVictory(impactPower);
+        }
+        else
+        {
+            Debug.LogWarning("GameEndManager non assigné !");
+        }
     }
 }

@@ -157,3 +157,4 @@ MonoBehaviour:
   speedWeight: 1.5
   scoreWeight: 0.1
   forceMultiplier: 3
+  gameEndManager: {fileID: 5331486008319676024, guid: 9e82e9a60911dab449d9e5132e8df647, type: 3}

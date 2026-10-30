@@ -9,7 +9,6 @@ public class PlanetHUD : MonoBehaviour
 
     void Update()
     {
-        hudText.text = "Masse : " + planetMass.CurrentMass.ToString("F0")
-            + "\nVitesse : " + planetMovement.CurrentSpeed.ToString("F1");
+        hudText.text = "Masse : " + planetMass.CurrentMass.ToString("F0") + "\nVitesse : " + planetMovement.CurrentSpeed.ToString("F1");
     }
 }
