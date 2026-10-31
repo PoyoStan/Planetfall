@@ -128,6 +128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlackHoleHazard
   speedLoss: 3
+  fragmentSize: 0.5
+  absorptionDuration: 1
+  spawnRadius: 1.5
 --- !u!114 &9112911745009119552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
   heightAboveTrack: 1.5
-  raycastHeight: 50
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8

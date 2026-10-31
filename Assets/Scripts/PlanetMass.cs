@@ -10,6 +10,10 @@ public class PlanetMass : MonoBehaviour
     [Header("Death")]
     [SerializeField] GameObject explosionPrefab;
 
+    [Header("Death Sound")]
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] float deathSoundVolume = 1f;
+
     float currentMass;
     Vector3 startingScale;
     Rigidbody rb;
@@ -69,6 +73,15 @@ public class PlanetMass : MonoBehaviour
 
         IsDead = true;
         currentMass = 0f;
+
+        if (deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                deathSound,
+                transform.position,
+                deathSoundVolume
+            );
+        }
 
         if (gameEndManager != null)
         {

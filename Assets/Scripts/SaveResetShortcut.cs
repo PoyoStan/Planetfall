@@ -21,11 +21,18 @@ public class SaveResetShortcut : MonoBehaviour
 
     void ResetAllSaves()
     {
+        // Suppression de toutes les sauvegardes
         PlayerPrefs.DeleteAll();
+
+        // Réinitialisation du volume à 100 %
+        AudioListener.volume = 1f;
+
+        // Enregistrement des modifications
         PlayerPrefs.Save();
 
         Debug.Log("Toutes les sauvegardes ont été réinitialisées.");
 
+        // Rechargement de la scène actuelle
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

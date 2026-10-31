@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class FinalPlanetImpact : MonoBehaviour
@@ -10,6 +9,10 @@ public class FinalPlanetImpact : MonoBehaviour
 
     [Header("Victory")]
     [SerializeField] GameEndManager gameEndManager;
+
+    [Header("Impact Particles")]
+    [SerializeField] GameObject explosionPrefab;
+    [SerializeField] float explosionScaleMultiplier = 5f;
 
     bool impactResolved;
 
@@ -47,6 +50,19 @@ public class FinalPlanetImpact : MonoBehaviour
         }
 
         impactResolved = true;
+
+        // Création de l'explosion au point d'impact
+        if (explosionPrefab != null)
+        {
+            GameObject explosion = Instantiate(
+                explosionPrefab,
+                other.ClosestPoint(transform.position),
+                Quaternion.identity
+            );
+
+            explosion.transform.localScale =
+                explosionPrefab.transform.localScale * explosionScaleMultiplier;
+        }
 
         float mass = planetMass.CurrentMass;
         float speed = planetMovement.CurrentSpeed;

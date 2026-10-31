@@ -12,6 +12,10 @@ public class GameEndManager : MonoBehaviour
     [Header("Victory UI")]
     [SerializeField] TMP_Text impactScoreText;
 
+    [Header("HUD à masquer")]
+    [SerializeField] GameObject scoreText;
+    [SerializeField] GameObject statsText;
+
     bool endSequenceStarted;
 
     void Start()
@@ -26,6 +30,8 @@ public class GameEndManager : MonoBehaviour
     {
         if (endSequenceStarted) return;
 
+        HideHUD();
+
         endSequenceStarted = true;
 
         deathPanel.SetActive(true);
@@ -36,6 +42,8 @@ public class GameEndManager : MonoBehaviour
     public void ShowVictory(float impactScore)
     {
         if (endSequenceStarted) return;
+
+        HideHUD();
 
         endSequenceStarted = true;
 
@@ -75,5 +83,14 @@ public class GameEndManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void HideHUD()
+    {
+        if (scoreText != null)
+            scoreText.SetActive(false);
+
+        if (statsText != null)
+            statsText.SetActive(false);
     }
 }

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -6,7 +7,7 @@ using TMPro;
 public class LevelData
 {
     public string levelName;
-    public Sprite previewImage;
+    public Texture previewImage;
     public string sceneName;
 }
 
@@ -17,10 +18,11 @@ public class LevelSelectionManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TMP_Text levelNameText;
-    [SerializeField] Image levelImage;
+    [SerializeField] RawImage levelImage;
     [SerializeField] TMP_Text bestScoreText;
 
     int currentLevelIndex = 0;
+
     public string SelectedSceneName => levels[currentLevelIndex].sceneName;
     public int SelectedLevelIndex => currentLevelIndex;
 
@@ -58,8 +60,9 @@ public class LevelSelectionManager : MonoBehaviour
         LevelData level = levels[currentLevelIndex];
 
         levelNameText.text = level.levelName;
-        levelImage.sprite = level.previewImage;
-        string levelName = levels[currentLevelIndex].sceneName;
+        levelImage.texture = level.previewImage;
+
+        string levelName = level.sceneName;
 
         if (!string.IsNullOrEmpty(levelName))
         {

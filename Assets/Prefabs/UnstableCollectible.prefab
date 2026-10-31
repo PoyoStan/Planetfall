@@ -4898,8 +4898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ce4a78ffcfe40a324aca22ca8b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
-  heightAboveTrack: 0.5
-  raycastHeight: 10
+  heightAboveTrack: 0.25
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8

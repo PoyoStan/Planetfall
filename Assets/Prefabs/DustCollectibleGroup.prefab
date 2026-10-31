@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
   heightAboveTrack: 0.5
-  raycastHeight: 50
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
   heightAboveTrack: 0.5
-  raycastHeight: 50
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
   heightAboveTrack: 0.5
-  raycastHeight: 50
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectiblePlacement
   heightAboveTrack: 0.5
-  raycastHeight: 50
+  raycastHeight: 500
   trackLayer:
     serializedVersion: 2
     m_Bits: 8

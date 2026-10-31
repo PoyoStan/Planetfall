@@ -6,6 +6,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject mainMenuPanel;
     [SerializeField] GameObject levelSelectionPanel;
     [SerializeField] GameObject skinSelectionPanel;
+    [SerializeField] GameObject optionsPanel;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         levelSelectionPanel.SetActive(false);
         skinSelectionPanel.SetActive(false);
+        optionsPanel.SetActive(false);
     }
 
     public void ShowLevelSelection()
@@ -24,6 +26,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         levelSelectionPanel.SetActive(true);
         skinSelectionPanel.SetActive(false);
+        optionsPanel.SetActive(false);
     }
 
     public void ShowSkinSelection()
@@ -31,6 +34,15 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         levelSelectionPanel.SetActive(false);
         skinSelectionPanel.SetActive(true);
+        optionsPanel.SetActive(false);
+    }
+
+    public void ShowOptionsMenu()
+    {
+        mainMenuPanel.SetActive(false);
+        levelSelectionPanel.SetActive(false);
+        skinSelectionPanel.SetActive(false);
+        optionsPanel.SetActive(true);
     }
 
     public void QuitGame()

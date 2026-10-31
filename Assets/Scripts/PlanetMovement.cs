@@ -15,6 +15,7 @@ public class PlanetMovement : MonoBehaviour
     [SerializeField] float jumpForce = 7f;
 
     [SerializeField] PlanetMass planetMass;
+    [SerializeField] AudioSource unstableEffectAudio;
 
     Rigidbody rb;
     float currentSpeed;
@@ -152,6 +153,11 @@ public class PlanetMovement : MonoBehaviour
         {
             unstableEffectParticles.Play();
         }
+
+        if (unstableEffectAudio != null && !unstableEffectAudio.isPlaying)
+        {
+            unstableEffectAudio.Play();
+        }
     }
 
     // Fin de l'effet du cristal
@@ -170,6 +176,11 @@ public class PlanetMovement : MonoBehaviour
         if (unstableEffectParticles != null)
         {
             unstableEffectParticles.Stop();
+        }
+
+        if (unstableEffectAudio != null)
+        {
+            unstableEffectAudio.Stop();
         }
     }
 }
